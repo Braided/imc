@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora de IMC</title>
+    <style>
+      .container {
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+      }
+
+      input[type="text"],
+      input[type="button"] {
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .classification {
+        margin-top: 10px;
+        font-size: 16px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculadora de IMC</h1>
+      <label for="height">Altura (em metros):</label>
+      <input type="text" id="height">
+      <br>
+      <label for="weight">Peso (em kg):</label>
+      <input type="text" id="weight">
+      <br>
+      <input type="button" value="Calcular IMC" onclick="calculateIMC()">
+      <br>
+      <div class="result" id="result"></div>
+      <div class="classification" id="classification"></div>
+    </div>
+    <script>
+      function calculateIMC() {
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var imc = weight / (height * height);
+        document.getElementById("result").innerHTML = "Seu IMC é: " + imc.toFixed(2);
+        if (imc < 18.5) {
+          document.getElementById("classification").innerHTML = "Abaixo do peso";
+        } else if (imc >= 18.5 && imc < 25) {
+          document.getElementById("classification").innerHTML = "Peso normal";
+        } else if (imc >= 25 && imc < 30) {
+          document.getElementById("classification").innerHTML = "Sobrepeso";
+        } else if (imc >= 30 && imc < 35) {
+          document.getElementById("classification").innerHTML = "Obesidade grau 1";
+        } else if (imc >= 35 && imc < 40) {
+          document.getElementById("classification").innerHTML = "Obesidade grau 2 (severa)";
+        } else {
+          document.getElementById("classification").innerHTML = "Obesidade grau 3 (mórbida)";
+        }
+      }
+    </script>
+  </body>
+</html>
